@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from 'src/app/_models/member';
 import { MembersService } from 'src/app/_services/members.service';
-import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
-import { AccountService } from 'src/app/_services/account.service';
+import { TabDirective } from 'ngx-bootstrap/tabs';
 import { User } from 'src/app/_models/user';
-import { take } from 'rxjs/operators';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import { TimeagoPipe } from 'ngx-timeago';
 
 @Component({
   selector: 'app-member-detail',
