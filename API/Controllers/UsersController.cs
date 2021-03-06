@@ -8,6 +8,7 @@ using API.Extenstions;
 using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

@@ -27,6 +27,11 @@ import { TextInputsComponent } from './_forms/text-inputs/text-inputs.component'
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DateInputsComponent } from './_forms/date-inputs/date-inputs.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { HasRoleDirective } from './_directives/has-role.directive';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
+import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +50,12 @@ import { MemberMessagesComponent } from './members/member-messages/member-messag
     PhotoEditorComponent,
     TextInputsComponent,
     DateInputsComponent,
-    MemberMessagesComponent
+    MemberMessagesComponent,
+    AdminPanelComponent,
+    HasRoleDirective,
+    UserManagementComponent,
+    PhotoManagementComponent,
+    RolesModalComponent
   ],
   imports: [
     BrowserModule,
