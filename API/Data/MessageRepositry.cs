@@ -69,7 +69,7 @@ namespace API.Data
         {
             var query = _context.Messages
                 .OrderByDescending(m => m.MessageSent)
-                //.ProjectTo<MessageDTO>(_mapper.ConfigurationProvider)
+                .ProjectTo<MessageDTO>(_mapper.ConfigurationProvider)
                 .AsQueryable();
 
             query = messageParams.Container switch
@@ -85,17 +85,13 @@ namespace API.Data
                     && u.DateRead == null)
             };
 
-            var messages = query.ProjectTo<MessageDTO>(_mapper.ConfigurationProvider);
-
             return await PagedList<MessageDTO>
-            .CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
+            .CreateAsync(query, messageParams.PageNumber, messageParams.PageSize);
         }
 
         public async Task<IEnumerable<MessageDTO>> GetMessageThread(string currentUsername, string recipientUsername)
         {
             var messages = await _context.Messages
-            .Include(s=>s.Sender).ThenInclude(p => p.Photos)
-            .Include(s=>s.Recipient).ThenInclude(p => p.Photos)
             .Where(m => m.Recipient.UserName == currentUsername && m.RecipientDeleted == false
                 && m.Sender.UserName == recipientUsername
                 || m.Recipient.UserName == recipientUsername
@@ -114,20 +110,14 @@ namespace API.Data
                 {
                     message.DateRead = DateTime.UtcNow;
                 }
-                await _context.SaveChangesAsync();
             }
 
-            return _mapper.Map<IEnumerable<MessageDTO>>(messages);
+            return messages;
         }
 
         public void RemoveConnection(Connection connection)
         {
             _context.Connections.Remove(connection);
-        }
-
-        public async Task<bool> SaveAllAsync()
-        {
-            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

@@ -22,6 +22,12 @@ namespace API.Data
             _context = context;
         }
 
+        public async Task<string> GetGender(string username)
+        {
+            return await _context.Users.Where(x => x.UserName == username)
+            .Select(x => x.Gender).FirstOrDefaultAsync();
+        }
+
         public async Task<MemberDTO> GetMemberAsync(string username)
         {
             return await _context.Users
@@ -70,11 +76,6 @@ namespace API.Data
             return await _context.Users
             .Include(x => x.Photos)
             .ToListAsync();
-        }
-
-        public async Task<bool> SaveChangesAsync()
-        {
-            return await _context.SaveChangesAsync() > 0;
         }
 
         public void Update(AppUser user)
