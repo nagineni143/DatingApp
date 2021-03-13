@@ -55,8 +55,8 @@ namespace API
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+            //app.UseDefaultFiles();
+            //app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
